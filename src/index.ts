@@ -107,10 +107,13 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         throw new McpError(ErrorCode.MethodNotFound, "Unknown tool");
     }
   } catch (err) {
-    const error = err;
+    let errorMessage = 'An unknown error occurred';
+    if (err instanceof Error) {
+      errorMessage = err.message;
+    }
     throw new McpError(
       ErrorCode.InternalError,
-      `Failed to delete ${name === 'delete_file' ? 'file' : 'directory'} ${inputPath}: ${error.message}`
+      `Failed to delete ${name === 'delete_file' ? 'file' : 'directory'} ${inputPath}: ${errorMessage}`
     );
   }
 });
