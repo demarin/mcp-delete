@@ -1,106 +1,32 @@
-# @qpd-v/mcp-delete
-[![smithery badge](https://smithery.ai/badge/@qpd-v/mcp-delete)](https://smithery.ai/server/@qpd-v/mcp-delete)
+# @demarin/mcp-delete
 
-A Model Context Protocol (MCP) server that provides file deletion capabilities. This server allows AI assistants to safely delete files when needed, with support for both relative and absolute paths.
+A Model Context Protocol (MCP) server that provides file and directory deletion capabilities. This server allows AI assistants to safely delete files and directories when needed.
 
 ## Features
 
-- Delete files using relative or absolute paths
-- Smart path resolution that tries multiple potential paths
-- Clear error messages with detailed path resolution information
-- Safe file existence checks before deletion
-- Works with Claude and other MCP-compatible AI assistants
+- Delete files and directories using absolute paths.
+- Safe existence checks before deletion.
+- Works with Cline and other MCP-compatible AI assistants.
 
-## Examples
+## Installation & Configuration
 
-### Using with Claude Desktop
-![Claude Desktop Example](img/1-screenshot-claude-desktop-mcp-delete.jpg)
+This server can be run directly from its GitHub repository using `npx`.
 
-### Using with VSCode Roo Cline Extension
-![VSCode Roo Cline Example](img/1-screenshot-cline-mcp-delete.jpg)
+Add the following configuration to your `cline_mcp_settings.json` file:
 
-## Installation
-
-### Installing via Smithery
-
-To install File Deletion for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@qpd-v/mcp-delete):
-
-```bash
-npx -y @smithery/cli install @qpd-v/mcp-delete --client claude
-```
-
-### Manual Installation
-```bash
-npx @qpd-v/mcp-delete
-```
-
-Or install globally:
-
-```bash
-npm install -g @qpd-v/mcp-delete
-```
-
-## Configuration
-
-### Claude Desktop
-
-Add the server configuration to your Claude Desktop config file:
-
-Windows:
 ```json
-// %APPDATA%/Claude/claude_desktop_config.json
 {
   "mcpServers": {
-    "mcp-delete": {
+    "demarin/mcp-delete": {
       "command": "npx",
-      "args": ["@qpd-v/mcp-delete"]
+      "args": [
+        "-y",
+        "github:demarin/mcp-delete"
+      ],
+      "disabled": false,
+      "autoApprove": []
     }
   }
-}
-```
-
-MacOS:
-```json
-// ~/Library/Application Support/Claude/claude_desktop_config.json
-{
-  "mcpServers": {
-    "mcp-delete": {
-      "command": "npx",
-      "args": ["@qpd-v/mcp-delete"]
-    }
-  }
-}
-}
-```
-
-### VSCode Extension
-
-Add the server configuration to your Cline settings:
-
-Windows:
-```json
-// %APPDATA%/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/cline_mcp_settings.json
-{
-  "mcpServers": {
-    "mcp-delete": {
-      "command": "npx",
-      "args": ["@qpd-v/mcp-delete"]
-    }
-  }
-}
-```
-
-MacOS:
-```json
-// ~/Library/Application Support/Code/User/globalStorage/rooveterinaryinc.roo-cline/settings/cline_mcp_settings.json
-{
-  "mcpServers": {
-    "mcp-delete": {
-      "command": "npx",
-      "args": ["@qpd-v/mcp-delete"]
-    }
-  }
-}
 }
 ```
 
@@ -108,60 +34,35 @@ MacOS:
 
 ### delete_file
 
-Deletes a file at the specified path.
+Deletes a file at the specified absolute path.
 
-Parameters:
-- `path` (string, required): Path to the file to delete (relative to working directory or absolute)
+**Parameters:**
+- `path` (string, required): The absolute path to the file to delete.
 
-Example usage in Claude:
-```
-You can ask me to delete a file like this:
-"Please delete the file example.txt"
+### delete_directory
 
-I will use the delete_file tool to safely remove the file.
-```
+Deletes a directory at the specified absolute path.
 
-## Path Resolution
-
-The server intelligently handles path resolution by trying multiple approaches:
-1. The exact path as provided
-2. Path relative to the current working directory
-3. Path relative to a specified base directory
-
-This makes it more user-friendly as files can be referenced by relative paths and the server will attempt to locate them correctly.
+**Parameters:**
+- `path` (string, required): The absolute path to the directory to delete.
 
 ## Development
 
-Clone the repository:
+Clone the repository to get started with development:
 ```bash
-git clone https://github.com/qpd-v/mcp-delete.git
+git clone https://github.com/demarin/mcp-delete.git
 cd mcp-delete
 ```
 
-Install dependencies:
+The source code is located in the `src/` directory and is written in TypeScript.
+
+### Build Process
+
+To make changes, modify the `.ts` files and then run the build script. This will compile the TypeScript into JavaScript in the `build/` directory.
 ```bash
-npm install
+./build.sh
 ```
-
-Build the server:
-```bash
-npm run build
-```
-
-For development with auto-rebuild:
-```bash
-npm run watch
-```
-
-### Debugging
-
-Since MCP servers communicate over stdio, debugging can be challenging. Use the MCP Inspector for debugging:
-
-```bash
-npm run inspector
-```
-
-This will provide a URL to access debugging tools in your browser.
+**Important:** After building, you must commit and push the updated `build/` directory to the GitHub repository for the changes to take effect when running via `npx`.
 
 ## License
 
@@ -169,4 +70,4 @@ MIT
 
 ## Author
 
-qpd-v
+demarin
