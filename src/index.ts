@@ -1,4 +1,28 @@
-#!/usr/bin/env node
+┌──(rumpel㉿DESKTOP-IS83QLR)-[~/.npm/_npx/a3241bba59c344f5/node_modules]
+└─$ ls
+accepts                  ee-first                    hasown                   object-assign           shebang-regex
+ajv                      emoji-regex                 has-symbols              object-inspect          side-channel
+ansi-regex               encodeurl                   http-errors              once                    side-channel-list
+ansi-styles              escape-html                 iconv-lite               on-finished             side-channel-map
+balanced-match           es-define-property          inherits                 package-json-from-dist  side-channel-weakmap
+body-parser              es-errors                   ipaddr.js                parseurl                signal-exit
+brace-expansion          es-object-atoms             @isaacs                  path-key                statuses
+bytes                    etag                        isexe                    path-scurry             string-width
+call-bind-apply-helpers  eventsource                 is-fullwidth-code-point  path-to-regexp          string-width-cjs
+call-bound               eventsource-parser          is-promise               pkce-challenge          strip-ansi
+color-convert            express                     jackspeak                @pkgjs                  strip-ansi-cjs
+color-name               express-rate-limit          json-schema-traverse     proxy-addr              toidentifier
+content-disposition      fast-deep-equal             lru-cache                punycode                type-is
+content-type             fast-json-stable-stringify  math-intrinsics          qs                      unpipe
+cookie                   finalhandler                media-typer              range-parser            uri-js
+cookie-signature         foreground-child            merge-descriptors        raw-body                vary
+cors                     forwarded                   mime-db                  router                  which
+cross-spawn              fresh                       mime-types               safe-buffer             wrap-ansi
+debug                    function-bind               minimatch                safer-buffer            wrap-ansi-cjs
+depd                     get-intrinsic               minipass                 send                    wrappy
+diff                     get-proto                   @modelcontextprotocol    serve-static            zod
+dunder-proto             glob                        ms                       setprototypeof          zod-to-json-schema
+eastasianwidth           gopd                        negotiator               shebang-command#!/usr/bin/env node
 
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
