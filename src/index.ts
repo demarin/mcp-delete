@@ -9,7 +9,7 @@ import {
   McpError
 } from "@modelcontextprotocol/sdk/types.js";
 import { unlink, rmdir } from 'fs/promises';
-import { existsSync } from 'fs';
+import { existsSync, createWriteStream } from 'fs';
 import { isAbsolute } from 'path';
 
 /**
@@ -122,9 +122,27 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
  * Start the server using stdio transport.
  */
 async function main() {
+  const logStream = createWriteStream('/home/rumpel/prog/mcp-delete/debug.log', { flags: 'a' });
+  const logError = (message: any, ...optionalParams: any[]) => {
+    const timestamp = new Date().toISOString();
+    const formattedMessage = typeof message === 'string' ? message : JSON.stringify(message);
+    logStream.write(`[${timestamp}] ${formattedMessage} ${optionalParams.join(' ')}\n`);
+  };
+  console.error = logError;
+
+  process.on('uncaughtException', (err, origin) => {
+    logError(`\nFATAL ERROR\nCaught exception: ${err.stack || err}\n` + `Exception origin: ${origin}`);
+    logStream.end(() => process.exit(1));
+  });
+
+  process.on('unhandledRejection', (reason, promise) => {
+    logError('\nFATAL ERROR\nUnhandled Rejection at:', promise, 'reason:', reason);
+    logStream.end(() => process.exit(1));
+  });
+
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error('Custom file/directory deletion MCP server running on stdio');
+  console.error('Custom file/directory deletion MCP server running on stdio. Logging to debug.log');
 }
 
 main().catch((error) => {
