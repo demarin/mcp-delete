@@ -1,7 +1,7 @@
 {
-  "name": "@qpd-v/mcp-delete",
+  "name": "@demarin/mcp-delete",
   "version": "0.1.0",
-  "description": "A Model Context Protocol (MCP) server that provides file deletion capabilities",
+  "description": "A Model Context Protocol (MCP) server that provides file and dir deletion capabilities",
   "type": "module",
   "bin": {
     "mcp-delete": "./build/index.js"
@@ -26,19 +26,20 @@
     "mcp",
     "model-context-protocol",
     "file-deletion",
+    "dir-deletion",
     "claude",
     "ai-tools"
   ],
-  "author": "qpd-v",
+  "author": "demarin",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/qpd-v/mcp-delete.git"
+    "url": "git+https://github.com/demarin/mcp-delete.git"
   },
   "bugs": {
-    "url": "https://github.com/qpd-v/mcp-delete/issues"
+    "url": "https://github.com/demarin/mcp-delete/issues"
   },
-  "homepage": "https://github.com/qpd-v/mcp-delete#readme",
+  "homepage": "https://github.com/demarin/mcp-delete#readme",
   "publishConfig": {
     "access": "public"
   }
