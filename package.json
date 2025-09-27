@@ -9,10 +9,6 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "0.6.0"
   },
-  "devDependencies": {
-    "@types/node": "^20.11.24",
-    "typescript": "^5.3.3"
-  },
   "keywords": [
     "mcp",
     "model-context-protocol",
